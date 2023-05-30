@@ -2,7 +2,9 @@ package wallet
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
+	"os"
 
 	lg "github.com/bahodurnazarov/middleTask/utils"
 	"github.com/joho/godotenv"
@@ -11,15 +13,22 @@ import (
 
 func Conn() *sql.DB {
 
-	err := godotenv.Load(".env")
-
+	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-	psqlInfo := "postgresql://postgres:postgres@localhost/AlifTask?sslmode=disable"
 
+	dbHost := os.Getenv("DB_HOST")
+	dbPort := os.Getenv("DB_PORT")
+	dbUser := os.Getenv("DB_USER")
+	dbPassword := os.Getenv("DB_PASSWORD")
+	dbName := os.Getenv("DB_NAME")
+
+	connStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
+		dbHost, dbPort, dbUser, dbPassword, dbName)
+		
 	// Подключение к базе данных PostgreSQL
-	db, err := sql.Open("postgres", psqlInfo)
+	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		lg.Errl.Fatal("Failed to connect to database. \n", err)
 	}
