@@ -14,6 +14,7 @@ func Listening() {
 	router.HandleFunc("/wallets/{id}/exists", wallet.AccountExists).Methods("GET")
 	router.HandleFunc("/wallets/{id}/deposit", wallet.Deposit).Methods("POST")
 	router.HandleFunc("/wallets/{id}/summary", wallet.GetTransactionSummary).Methods("GET")
-	
+	router.HandleFunc("/wallets/{id}/balance", wallet.GetBalance).Methods("GET")
+
 	log.Fatal(http.ListenAndServe(":8000", router))
 }
