@@ -23,7 +23,6 @@ func Conn() *sql.DB {
 	if err != nil {
 		lg.Errl.Fatal("Failed to connect to database. \n", err)
 	}
-	defer db.Close()
 
 	err = db.Ping()
 	if err != nil {
