@@ -14,3 +14,13 @@ INFO: 2023/05/30 14:39:43 conn.go:32: Successfully connected!
 INFO: 2023/05/30 14:41:02 conn.go:32: Successfully connected!
 INFO: 2023/05/30 14:41:06 conn.go:32: Successfully connected!
 INFO: 2023/05/30 14:41:08 conn.go:32: Successfully connected!
+INFO: 2023/05/30 17:35:26 route.go:19: Сервер запущен на http://localhost:8080
+INFO: 2023/05/30 19:47:34 accountExist.go:18: 3
+INFO: 2023/05/30 20:03:16 accountExist.go:17: 3
+INFO: 2023/05/30 20:10:01 create.go:54: {25 Bahodur Nazarov 1534 true 0001-01-01 00:00:00 +0000 UTC}
+INFO: 2023/05/30 20:10:45 create.go:54: {26 Bahodur Nazarov 1534 true 0001-01-01 00:00:00 +0000 UTC}
+INFO: 2023/05/30 20:10:48 accountExist.go:16: 3
+INFO: 2023/05/30 20:10:49 accountExist.go:34: map[exists:true]
+INFO: 2023/05/30 20:10:51 deposit.go:81: 200
+INFO: 2023/05/30 20:10:54 getSummTran.go:40: map[count:1 sum:1003]
+INFO: 2023/05/30 20:10:57 getBalance.go:34: map[balance:1.233321232e+09]

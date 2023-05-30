@@ -2,15 +2,17 @@ package wallet
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 	"time"
 
 	d "github.com/bahodurnazarov/middleTask/db"
+	lg "github.com/bahodurnazarov/middleTask/utils"
 	"github.com/gorilla/mux"
 )
 
 func GetTransactionSummary(w http.ResponseWriter, r *http.Request) {
+
+	// Обработка GET-запроса
 	params := mux.Vars(r)
 	walletID := params["id"]
 
@@ -24,7 +26,7 @@ func GetTransactionSummary(w http.ResponseWriter, r *http.Request) {
 	var sum float64
 	err := row.Scan(&count, &sum)
 	if err != nil {
-		log.Println(err)
+		lg.Errl.Println(err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
@@ -35,4 +37,5 @@ func GetTransactionSummary(w http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(w).Encode(summary)
+	lg.Server.Println(summary)
 }

@@ -2,11 +2,11 @@ package wallet
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 	"time"
 
 	d "github.com/bahodurnazarov/middleTask/db"
+	lg "github.com/bahodurnazarov/middleTask/utils"
 	"github.com/gorilla/mux"
 )
 
@@ -19,6 +19,7 @@ type Transaction struct {
 }
 
 func Deposit(w http.ResponseWriter, r *http.Request) {
+	// Обработка POST-запроса
 	params := mux.Vars(r)
 	walletID := params["id"]
 
@@ -41,7 +42,7 @@ func Deposit(w http.ResponseWriter, r *http.Request) {
 	// Retrieve wallet details
 	wallet, err := GetWallet(walletID)
 	if err != nil {
-		log.Println(err)
+		lg.Errl.Println(err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
@@ -62,7 +63,7 @@ func Deposit(w http.ResponseWriter, r *http.Request) {
 	db := d.Conn()
 	_, err = db.Exec("UPDATE wallets SET balance = $1 WHERE id = $2", newBalance, wallet.ID)
 	if err != nil {
-		log.Println(err)
+		lg.Errl.Println(err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
@@ -71,10 +72,11 @@ func Deposit(w http.ResponseWriter, r *http.Request) {
 	_, err = db.Exec("INSERT INTO transactions (wallet_id, amount, description, transaction_time) VALUES ($1, $2, $3, $4)",
 		wallet.ID, transaction.Amount, transaction.Description, time.Now())
 	if err != nil {
-		log.Println(err)
+		lg.Errl.Println(err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 
 	w.WriteHeader(http.StatusOK)
+	lg.Server.Println(http.StatusOK)
 }

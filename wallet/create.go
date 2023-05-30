@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 	"time"
-
+	lg "github.com/bahodurnazarov/middleTask/utils"
 	d "github.com/bahodurnazarov/middleTask/db"
 )
 
@@ -18,7 +18,7 @@ type Wallet struct {
 }
 
 func CreateWallet(w http.ResponseWriter, r *http.Request) {
-	// Чтение данных запроса
+	// Обработка POST-запроса// Чтение данных запроса
 	var wallet Wallet
 	err := json.NewDecoder(r.Body).Decode(&wallet)
 	if err != nil {
@@ -51,4 +51,5 @@ func CreateWallet(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(wallet)
+	lg.Server.Println(wallet)
 }

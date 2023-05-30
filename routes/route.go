@@ -1,11 +1,13 @@
 package routes
 
 import (
-	"log"
+	"fmt"
 	"net/http"
 
-	"github.com/bahodurnazarov/middleTask/wallet"
 	"github.com/gorilla/mux"
+
+	lg "github.com/bahodurnazarov/middleTask/utils"
+	"github.com/bahodurnazarov/middleTask/wallet"
 )
 
 func Listening() {
@@ -15,6 +17,6 @@ func Listening() {
 	router.HandleFunc("/wallets/{id}/deposit", wallet.Deposit).Methods("POST")
 	router.HandleFunc("/wallets/{id}/summary", wallet.GetTransactionSummary).Methods("GET")
 	router.HandleFunc("/wallets/{id}/balance", wallet.GetBalance).Methods("GET")
-
-	log.Fatal(http.ListenAndServe(":8000", router))
+	fmt.Println("Сервер запущен на http://localhost:8000")
+	lg.Server.Fatal(http.ListenAndServe(":8000", router))
 }
