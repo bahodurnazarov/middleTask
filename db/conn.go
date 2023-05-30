@@ -1,4 +1,4 @@
-package conn
+package wallet
 
 import (
 	"database/sql"
@@ -24,11 +24,5 @@ func Conn() *sql.DB {
 		lg.Errl.Fatal("Failed to connect to database. \n", err)
 	}
 
-	err = db.Ping()
-	if err != nil {
-		lg.Errl.Fatal("Panic . \n", err)
-	}
-
-	lg.Server.Println("Successfully connected!")
 	return db
 }
