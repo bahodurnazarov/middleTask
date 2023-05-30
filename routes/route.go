@@ -12,6 +12,7 @@ func Listening() {
 	router := mux.NewRouter()
 	router.HandleFunc("/wallets", wallet.CreateWallet).Methods("POST")
 	router.HandleFunc("/wallets/{id}/exists", wallet.AccountExists).Methods("GET")
+	router.HandleFunc("/wallets/{id}/deposit", wallet.Deposit).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":8000", router))
 }
