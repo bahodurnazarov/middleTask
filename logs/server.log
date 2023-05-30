@@ -24,3 +24,9 @@ INFO: 2023/05/30 20:10:49 accountExist.go:34: map[exists:true]
 INFO: 2023/05/30 20:10:51 deposit.go:81: 200
 INFO: 2023/05/30 20:10:54 getSummTran.go:40: map[count:1 sum:1003]
 INFO: 2023/05/30 20:10:57 getBalance.go:34: map[balance:1.233321232e+09]
+INFO: 2023/05/30 20:12:19 create.go:54: {27 Bahodur Nazarov 1534 true 0001-01-01 00:00:00 +0000 UTC}
+INFO: 2023/05/30 20:12:23 accountExist.go:16: 3
+INFO: 2023/05/30 20:12:23 accountExist.go:34: map[exists:true]
+INFO: 2023/05/30 20:12:25 deposit.go:81: 200
+INFO: 2023/05/30 20:12:28 getSummTran.go:40: map[count:1 sum:1003]
+INFO: 2023/05/30 20:12:30 getBalance.go:34: map[balance:1.233321232e+09]
